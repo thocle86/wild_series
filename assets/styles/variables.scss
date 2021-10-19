@@ -2,5 +2,26 @@ $color-1: #0DE49E;
 $color-2: #07724F;
 $color-3: #4AEBB6;
 $color-4: #0BC88A;
-$white: #FAF6F6;
-$black: #0E0E0E;
+
+// customize some Bootstrap variables
+// $theme-colors: (
+//   "primary":    $primary,
+//   "secondary":  $secondary,
+//   "success":    $success,
+//   "info":       $info,
+//   "warning":    $warning,
+//   "danger":     $danger,
+//   "light":      $light,
+//   "dark":       $dark
+// );
+
+$min-contrast-ratio: 2.5; //pour supprimer les erreurs de contraste
+
+//modification des couleurs Bootstrap
+$secondary: $color-1;
+$info: $color-2;
+$success: $color-3;
+$info : $color-4;
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";

@@ -1,17 +1,4 @@
 @import 'variables';
-// customize some Bootstrap variables
-$primary: $color-1;
-$secondary: $color-2;
-$light: $white;
-$dark: $black;
-$min-contrast-ratio: 2.5; //pour supprimer les erreurs de contraste
-// $success: $green;
-// $info: $cyan;
-// $warning: $yellow;
-// $danger: $red;
-
-// the ~ allows you to reference things in node_modules
-@import "~bootstrap/scss/bootstrap";
 
 body {
     background-color: $light;
@@ -21,13 +8,17 @@ body {
     height: 50px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+}
+
 .btn-outline-black {
     border-color: $dark;
     &:hover,
     &:focus {
-        background-color: $primary;
+        background-color: $color-1;
+        border-color: $color-1;
         color: $black;
-        box-shadow: 0 0 3px 3px lightgray;
     }
 }
 
@@ -44,7 +35,7 @@ body {
         height: 3px;
         bottom: 0;
         left: 0;
-        background-color: $primary;
+        background-color: $color-1;
         transform-origin: bottom right;
         transition: transform 0.25s ease-out;
     }

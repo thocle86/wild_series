@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Éditer la catégorie{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-3">
+        Éditer la catégorie
+    </h1>
+
+    <a href="{{ path('category_index') }}" class="btn">
+        <i class="bi bi-backspace-fill"></i>&nbsp;&nbsp;Retour à la liste des catégories
+    </a>
+
+    {{ include('category/_form.html.twig', {'button_label': 'Éditer'}) }}
+    
+{% endblock %}
