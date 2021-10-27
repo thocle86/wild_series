@@ -4,14 +4,18 @@
 
 {% block body %}
 
-    <h1 class="my-3">
+    <h1 class="m-3">
         Éditer la catégorie
     </h1>
 
-    <a href="{{ path('category_index') }}" class="btn">
-        <i class="bi bi-backspace-fill"></i>&nbsp;&nbsp;Retour à la liste des catégories
-    </a>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-start my-3">
+            {{ include('category/_button_return.html.twig') }}
+        </div>
+    </div>
 
-    {{ include('category/_form.html.twig', {'button_label': 'Éditer'}) }}
+    <div class="row d-flex justify-content-center m-3">
+        {{ include('category/_form.html.twig', {'button_label': 'Éditer'}) }}
+    </div>
     
 {% endblock %}

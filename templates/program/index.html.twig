@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des séries{% endblock %}
+
+{% block body %}
+
+    <h1 class="m-3">
+        Liste des séries
+    </h1>
+
+    <a href="{{ path('program_new') }}" class="d-inline-block m-3">
+        <button class="btn btn-outline-black m-1">
+            Créer une série&nbsp;&nbsp;<i class="bi bi-plus-circle"></i>
+        </button>
+    </a>
+
+    <div class="row d-flex justify-content-start m-3">
+    {% for program in programs %}
+        <div class="card m-3" style="width: 400px;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ program.title }}</h5>
+                <p class="card-text">{{ program.category.name }}</p>
+                <p class="card-text">{{ program.year }}</p>
+                <p class="card-text">{{ program.country }}</p>
+                <div class="row d-flex justify-content-end">
+                    {{ include('program/_button_show.html.twig') }}
+                    {{ include('program/_button_edit.html.twig') }}
+                    {{ include('program/_button_delete.html.twig') }}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        Aucune série trouvée
+    {% endfor %}
+    </div>
+
+{% endblock %}

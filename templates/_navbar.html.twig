@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
     <div class="container-fluid" id="nav-container">
         <a class="navbar-brand ms-3" href="{{ path('home') }}">
             <img src="{{ asset('build/logo.png') }}">
@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active mx-1 hover-underline-animation" href="#">
+                    <a class="nav-link active mx-1 hover-underline-animation" href="{{ path('program_index') }}">
                         Séries
                     </a>
                 </li>
