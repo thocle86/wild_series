@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ program.title }}{% endblock %}
+
+{% block body %}
+
+    <h1 class="m-3">
+        {{ program.title }}
+    </h1>
+
+    <div class="row">
+        <div class="col-8 d-flex justify-content-start my-3">
+            {{ include('program/_button_return.html.twig') }}
+        </div>
+        <div class="col-4 d-flex justify-content-end my-3">
+            {{ include('program/_button_edit.html.twig') }}
+            {{ include('program/_button_delete.html.twig') }}
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>{{ program.synopsis }}</td>
+            </tr>
+            <tr>
+                <td>{{ program.photo }}</td>
+            </tr>
+            <tr>
+                <td>{{ program.country }}</td>
+            </tr>
+            <tr>
+                <td>{{ program.year }}</td>
+            </tr>
+            <tr>
+                <td>{{ program.category.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

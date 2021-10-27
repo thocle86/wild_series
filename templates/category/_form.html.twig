@@ -1,9 +1,16 @@
-{{ form_start(form, {'attr': {'class' : 'row'}} ) }}
-    <div class="col-md-8">
-        {{ form_row(form.name)}}
+{{ form_start(form, {'attr': {'style' : 'max-width : 900px'}}) }}
 
-        <button class="btn btn-outline-black mx-1 my-3">
+    <div class="m-1">
+        {{ form_label(form.name) }}
+        {{ form_errors(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_help(form.name) }}
+    </div>
+
+    <div class="d-flex justify-content-end my-3">
+        <button class="btn btn-outline-black m-1">
             {{ button_label|default('Créer') }}&nbsp;&nbsp;<i class="bi bi-check-lg"></i>
         </button>
     </div>
+
 {{ form_end(form) }}

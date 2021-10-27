@@ -1,7 +1,6 @@
 $color-1: #0DE49E;
 $color-2: #07724F;
-$color-3: #4AEBB6;
-$color-4: #0BC88A;
+$color-3: #0BC88A;
 
 // customize some Bootstrap variables
 // $theme-colors: (
@@ -19,9 +18,8 @@ $min-contrast-ratio: 2.5; //pour supprimer les erreurs de contraste
 
 //modification des couleurs Bootstrap
 $secondary: $color-1;
-$info: $color-2;
-$success: $color-3;
-$info : $color-4;
+$success: $color-2;
+$info : $color-3;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";

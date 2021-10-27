@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer une catégorie{% endblock %}
+{% block title %}Créer une série{% endblock %}
 
 {% block body %}
 
     <h1 class="m-3">
-        Créer une catégorie
+        Créer une série
     </h1>
 
     <div class="row">
         <div class="col-12 d-flex justify-content-start my-3">
-            {{ include('category/_button_return.html.twig') }}
+            {{ include('program/_button_return.html.twig') }}
         </div>
     </div>
 
     <div class="row d-flex justify-content-center m-3">
-        {{ include('category/_form.html.twig') }}
+        {{ include('program/_form.html.twig') }}
     </div>
 
 {% endblock %}

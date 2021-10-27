@@ -4,18 +4,18 @@
 
 {% block body %}
 
-    <h1 class="my-3">
+    <h1 class="m-3">
         Liste des catégories
     </h1>
 
-    <a href="{{ path('category_new') }}">
-        <button class="btn btn-outline-black mx-1 my-3">
-            Créer une catégorie
+    <a href="{{ path('category_new') }}" class="d-inline-block m-3">
+        <button class="btn btn-outline-black m-1">
+            Créer une catégorie&nbsp;&nbsp;<i class="bi bi-plus-circle"></i>
         </button>
     </a>
 
-    <div class="table-responsive-md">
-        <table class="table table-hover align-middle my-3">
+    <div class="table-responsive-md m-3">
+        <table class="table table-hover align-middle">
             <tbody>
             {% for category in categories %}
                 <tr>
@@ -25,25 +25,10 @@
                         </h4>
                     </td>
                     <td class="col-1">
-                        <form
-                            class="col d-flex align-middle"
-                            action="{{ path('category_edit', {'id': category.id}) }}">
-                            <button type="submit" class="btn btn-outline-primary mx-1">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                        </form>
+                        {{ include('category/_button_edit.html.twig') }}
                     </td>
                     <td class="col-1">
-                        <form
-                            class="col d-flex align-middle"
-                            method="post"
-                            action="{{ path('category_delete', {'id': category.id}) }}"
-                            onsubmit="return confirm('Voulez-vous vraiment supprimer cette catégorie ?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
-                            <button type="submit" class="btn btn-outline-danger mx-1">
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </form>
+                        {{ include('category/_button_delete.html.twig') }}
                     </td>
                 </tr>
             {% else %}

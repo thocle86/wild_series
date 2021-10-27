@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,25 +14,33 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Category
 {
     /**
+     * @var integer
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @var integer
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * @var string
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank(message="Ce champ ne peut pas être vide")
      * @Assert\Length(
-     *      min = 2,
-     *      max = 255,
-     *      minMessage = "Le nom doit faire au moins {{ limit }} caractères",
+     *      max = 50,
      *      maxMessage = "Le nom ne peut pas faire plus de {{ limit }} caractères"
      * )
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Program::class, mappedBy="category")
+     */
+    private $programs;
+
+    public function __construct()
+    {
+        $this->programs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,6 +55,36 @@ class Category
     public function setName(string $name): self
     {
         $this->name = ucfirst($name);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Program[]
+     */
+    public function getPrograms(): Collection
+    {
+        return $this->programs;
+    }
+
+    public function addProgram(Program $program): self
+    {
+        if (!$this->programs->contains($program)) {
+            $this->programs[] = $program;
+            $program->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgram(Program $program): self
+    {
+        if ($this->programs->removeElement($program)) {
+            // set the owning side to null (unless already changed)
+            if ($program->getCategory() === $this) {
+                $program->setCategory(null);
+            }
+        }
 
         return $this;
     }

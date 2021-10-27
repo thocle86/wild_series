@@ -16,13 +16,7 @@ class CategoryType extends AbstractType
             ->add('name', TextType::class, [
                 'required' => false,
                 'label' => 'Nom',
-                'attr' => [
-                    'placeholder' => 'Catégorie',
-                ],
-                'row_attr' => [
-                    'class' => 'form-floating',
-                ],
-                'help' => 'Le nom de la catégorie doit faire entre 2 et 255 caractères',
+                'help' => 'Un maximum de 50 caractères est autorisé',
             ])
         ;
     }
