@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\ProgramRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
+ * @Vich\Uploadable
  */
 class Program
 {
@@ -43,14 +46,25 @@ class Program
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank(message="Ce champ ne peut pas être vide")
-     * @Assert\Length(
-     *      max = 50,
-     *      maxMessage = "Le nom ne peut pas faire plus de {{ limit }} caractères"
-     * )
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
+
+    /**
+     * @var File
+     * @Vich\UploadableField(mapping="photo_program_file", fileNameProperty="photo")
+     * @Assert\Image(
+     *      maxSize = "500k",
+     *      maxSizeMessage = "coucou",
+     *      mimeTypes = {"image/png", "image/jpg", "image/jpeg", "image/gif"},
+     *      mimeTypesMessage = "Le format {{ type }} n'est pas autorisé, formats autorisés: {{ types }}",
+     *      minRatio = "1",
+     *      minRatioMessage = "Un ratio de {{ ratio }} n'est pas optimal, il doit être de {{ min_ratio }} minimum",
+     *      maxRatio = "2",
+     *      maxRatioMessage = "Un ratio de {{ ratio }} n'est pas optimal, il doit être de {{ max_ratio }} maximum",
+     * )
+     */
+    private $photoFile;
 
     /**
      * @var string
@@ -66,10 +80,7 @@ class Program
     /**
      * @var integer
      * @ORM\Column(type="integer")
-     * @Assert\Type(
-     *     type="integer",
-     *     message="L'année doit être un nombre"
-     * )
+     * @Assert\NotBlank(message="Ce champ ne peut pas être vide")
      * @Assert\Length(
      *      min = 4,
      *      max = 4.1,
@@ -85,6 +96,12 @@ class Program
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -120,11 +137,24 @@ class Program
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
         return $this;
+    }
+
+    public function setPhotoFile(File $image = null): void
+    {
+        $this->photoFile = $image;
+        if($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
     }
 
     public function getCountry(): ?string
@@ -159,6 +189,18 @@ class Program
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
