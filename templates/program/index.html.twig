@@ -16,20 +16,24 @@
 
     <div class="row d-flex justify-content-start m-3">
     {% for program in programs %}
-        <div class="card m-3" style="width: 400px;">
-            <img src="..." class="card-img-top" alt="...">
+        <a href="{{ path('program_show', {'id': program.id}) }}" class="card m-3 p-0" style="width: 400px;">
+            <img class="card-img-top"
+                src="{{ vich_uploader_asset(program, 'photoFile')|imagine_filter('square400x300') }}"
+                alt="{{ program.title }}">
             <div class="card-body">
                 <h5 class="card-title">{{ program.title }}</h5>
-                <p class="card-text">{{ program.category.name }}</p>
-                <p class="card-text">{{ program.year }}</p>
-                <p class="card-text">{{ program.country }}</p>
+                <p class="card-text">
+                    {{ program.category.name }} | {{ program.year }} | {{ program.country }}
+                </p>
                 <div class="row d-flex justify-content-end">
-                    {{ include('program/_button_show.html.twig') }}
                     {{ include('program/_button_edit.html.twig') }}
                     {{ include('program/_button_delete.html.twig') }}
                 </div>
             </div>
-        </div>
+            <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </a>
     {% else %}
         Aucune série trouvée
     {% endfor %}

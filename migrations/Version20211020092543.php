@@ -21,7 +21,7 @@ final class Version20211020092543 extends AbstractMigration
             `category_id` INT NOT NULL,
             `title` VARCHAR(50) NOT NULL,
             `synopsis` LONGTEXT NOT NULL,
-            `photo` VARCHAR(50) NOT NULL,
+            `photo` VARCHAR(255) DEFAULT NULL,
             `country` VARCHAR(50) NOT NULL,
             `year` INT NOT NULL,
             INDEX IDX_92ED778412469DE2 (`category_id`),

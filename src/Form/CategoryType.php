@@ -14,9 +14,9 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'Nom',
-                'help' => 'Un maximum de 50 caractères est autorisé',
+                'help' => '50 caractères maximum',
             ])
         ;
     }
